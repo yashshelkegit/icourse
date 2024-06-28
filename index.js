@@ -88,7 +88,7 @@ const courses = [
 let currentSection = "#dashboard";
 
 const cardDiv = document.getElementById("courses");
-let html = ``;
+let html = `<div id="courses" class="white-clr">`;
 function init(flag) {
 	html = ``;
 	courses.map((course, index) => {
@@ -120,7 +120,7 @@ function init(flag) {
 						</div>
 					</div>`;
 	});
-	cardDiv.innerHTML = html;
+	cardDiv.innerHTML = html + "</div>";
 	addListener();
 }
 init(true);
@@ -399,6 +399,7 @@ ul.forEach((ul) => {
 		sidebarRes.style.height = "";
 		menuBtn.style.display = "";
 		head.style.display = "";
+		newsDiv.style.display = "none";
 		if (resNav == "active") {
 			sidebar.style.display = "none";
 			closeBtn.style.display = "none";
@@ -410,6 +411,7 @@ ul.forEach((ul) => {
 			currentSection = "#allCourses";
 			accordion.style.display = "none";
 			allCourseBtn.style.display = "none";
+			newsDiv.style.display = "none";
 			info.innerHTML = `<div class="main-info"><h1>All iCourse</h1><hr/></div>`;
 		}
 		if (href == "#dashboard") {
@@ -418,6 +420,183 @@ ul.forEach((ul) => {
 			accordion.style.display = "flex";
 			allCourseBtn.style.display = "block";
 			info.innerHTML = mainInfo;
+			newsDiv.style.display = "none";
+		}
+		if (href == "#news") {
+			currentSection = "#news";
+			accordion.style.display = "none";
+			allCourseBtn.style.display = "none";
+			info.innerHTML = `<div class="main-info"><h1>News</h1><hr/></div>`;
+			newsDiv.innerHTML = newsHtml + "</div>";
+			newsDiv.style.display = "grid";
+			cardDiv.style.display = "none";
+			const newsCard = document.querySelectorAll(".news");
+			newsCard.forEach((card) => {
+				card.addEventListener("click", (e) => {
+					e.stopImmediatePropagation();
+					if (e.currentTarget.classList.contains("news")) {
+						getNews(e.currentTarget.dataset.id);
+					}
+				});
+			});
 		}
 	});
+});
+
+function getNews(id) {
+	const newsToShow = news.filter((news) => news.id == id);
+	console.log(newsToShow);
+	let html = `<div class="news-show">
+			<button class="news-btn" onclick="goToNews()"><- back to news</button>
+			<div class="img">
+				<img src="${newsToShow[0].image}" alt="">
+			</div><br/>
+			<div class="content">
+				<h1>${newsToShow[0].title}</h1><br/>
+				<h4>${newsToShow[0].desc}</h4><br/>
+				<p>${newsToShow[0].content}</p>
+			</div>
+		</div>`;
+	newsDiv.innerHTML = html;
+}
+function goToNews() {
+	currentSection = "#news";
+	accordion.style.display = "none";
+	allCourseBtn.style.display = "none";
+	info.innerHTML = `<div class="main-info"><h1>News</h1><hr/></div>`;
+	newsDiv.innerHTML = newsHtml + "</div>";
+	newsDiv.style.display = "grid";
+	cardDiv.style.display = "none";
+	const newsCard = document.querySelectorAll(".news");
+	newsCard.forEach((card) => {
+		card.addEventListener("click", (e) => {
+			e.stopImmediatePropagation();
+			if (e.currentTarget.classList.contains("news")) {
+				getNews(e.currentTarget.dataset.id);
+			}
+		});
+	});
+}
+const news = [
+	{
+		id: 1,
+		image: "images/pexels-sugar-jet-750021845-26508609.jpg",
+		title: "Upgrading the Use of Artificial Intelligence in e-Learning",
+		desc: "Significant progress is being made in the use of artificial intelligence in the field of e-Learning.",
+		content:
+			"In particular, AI-based training platforms offer personalised training processes. Learners benefit from the adaptability of content, while this technology enhances active participation and understanding. The development of these advanced systems promises to make e-learning an even more effective means of education, allowing students to evolve beyond the usual boundaries of learning.",
+		author: "Henry Carter",
+	},
+	{
+		id: 2,
+		image: "images/pexels-natalie-voitovich-1420612136-26595636.jpg",
+		title: "Upgrading the Use of Artificial Intelligence in e-Learning",
+		desc: "Significant progress is being made in the use of artificial intelligence in the field of e-Learning.",
+		content:
+			"In particular, AI-based training platforms offer personalised training processes. Learners benefit from the adaptability of content, while this technology enhances active participation and understanding. The development of these advanced systems promises to make e-learning an even more effective means of education, allowing students to evolve beyond the usual boundaries of learning.",
+		author: "Henry Carter",
+	},
+	{
+		id: 3,
+		image: "images/pexels-tahmetler-24709246.jpg",
+		title: "Upgrading the Use of Artificial Intelligence in e-Learning",
+		desc: "Significant progress is being made in the use of artificial intelligence in the field of e-Learning.",
+		content:
+			"In particular, AI-based training platforms offer personalised training processes. Learners benefit from the adaptability of content, while this technology enhances active participation and understanding. The development of these advanced systems promises to make e-learning an even more effective means of education, allowing students to evolve beyond the usual boundaries of learning.",
+		author: "Henry Carter",
+	},
+	{
+		id: 4,
+		image: "images/pexels-dawid-kochman-129685123-24709890.jpg",
+		title: "Upgrading the Use of Artificial Intelligence in e-Learning",
+		desc: "Significant progress is being made in the use of artificial intelligence in the field of e-Learning.",
+		content:
+			"In particular, AI-based training platforms offer personalised training processes. Learners benefit from the adaptability of content, while this technology enhances active participation and understanding. The development of these advanced systems promises to make e-learning an even more effective means of education, allowing students to evolve beyond the usual boundaries of learning.",
+		author: "Henry Carter",
+	},
+	{
+		id: 5,
+		image: "images/pexels-aliona-pasha-1687920-3238764.jpg",
+		title: "Upgrading the Use of Artificial Intelligence in e-Learning",
+		desc: "Significant progress is being made in the use of artificial intelligence in the field of e-Learning.",
+		content:
+			"In particular, AI-based training platforms offer personalised training processes. Learners benefit from the adaptability of content, while this technology enhances active participation and understanding. The development of these advanced systems promises to make e-learning an even more effective means of education, allowing students to evolve beyond the usual boundaries of learning.",
+		author: "Henry Carter",
+	},
+];
+
+let newsHtml = `<div class="news-box">`;
+
+const newsDiv = document.querySelector(".news-box");
+news.map((news, index) => {
+	newsHtml += `<div class="news" data-id="${news.id}">
+					<div class="news img" data-id="${news.id}">
+						<img src="${news.image}" alt="" />
+					</div>
+					<div class="news news-content">
+						<div class="news title"data-id="${news.id}">
+							<h1>${news.title}</h1>
+						</div><br>
+						<div class="news desc" data-id="${news.id}">
+							<h4>${news.desc}</h4>
+						</div><br>
+						<div class="news news-footer" data-id="${news.id}">
+							<p>Author : ${news.author}</p>
+							<button class="news news-btn" data-id="${news.id}">-></button>
+						</div>
+					</div>
+				</div>`;
+});
+const overlay = document.querySelector(".overlay");
+const overlaySearch = document.querySelector(".overlay input");
+function openOverlay() {
+	overlay.style.display = "flex";
+	overlaySearch.focus();
+}
+overlay.addEventListener("click", (e) => {
+	if (e.target.type == "text") return;
+	overlay.style.display = "none";
+});
+
+overlaySearch.addEventListener("keyup", (e) => {
+	if (e.key == "Enter") {
+		const val = e.target.value;
+		e.target.value = "";
+		overlay.style.display = "none";
+		let search;
+		let flag;
+		news.forEach((n) => {
+			if (!flag) {
+				if (n.title.toLowerCase().includes(val.toLowerCase())) {
+					flag = true;
+					search = n;
+				}
+			}
+		});
+		if (flag) {
+			currentSection = "#news";
+			accordion.style.display = "none";
+			allCourseBtn.style.display = "none";
+			info.innerHTML = `<div class="main-info"><h1>News</h1><hr/></div>`;
+			newsDiv.innerHTML = newsHtml + "</div>";
+			newsDiv.style.display = "grid";
+			cardDiv.style.display = "none";
+			const newsCard = document.querySelectorAll(".news");
+			newsCard.forEach((card) => {
+				card.addEventListener("click", (e) => {
+					e.stopImmediatePropagation();
+					if (e.currentTarget.classList.contains("news")) {
+						getNews(e.currentTarget.dataset.id);
+					}
+				});
+			});
+		} else {
+			init(true);
+			currentSection = "#dashboard";
+			accordion.style.display = "flex";
+			allCourseBtn.style.display = "block";
+			info.innerHTML = mainInfo;
+			newsDiv.style.display = "none";
+		}
+	}
 });

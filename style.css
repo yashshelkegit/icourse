@@ -45,13 +45,16 @@ input[type = "text"]{
 	padding: 1rem;
 }
 #courses {
-	display: flex;
+	/* display: flex;
 	flex-wrap: wrap;
-	justify-content: flex-start;
+	justify-content: flex-start; */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
 }
 .card {
-	margin: 1rem;
-	width: 600px;
+	/* margin: 1rem; */
 	border-radius: 10px;
 	overflow: hidden;
     background: #F5F6F7;
@@ -200,7 +203,6 @@ input[type = "text"]{
 	}
 	.main {
 		width: 100%;
-    
 	}
     
 	.sidebar-res {
@@ -226,23 +228,23 @@ input[type = "text"]{
 }
 @media(max-width: 1700px) {
 
-    .card {
+    /* .card {
         width: 500px;
-    }
+    } */
 }
 @media(max-width: 1500px){
     .main{
         margin-left: 20rem;
     }
-    .card{
+    /* .card{
         width: 400px;
-    }
+    } */
 }
 @media(max-width: 1100px) {
-    .card {
+    /* .card {
         width: 700px;
-    }
-}
+    }*/
+} 
 @media(max-width: 1000px) {
     .main {
         margin-left: 15rem;
@@ -252,4 +254,67 @@ input[type = "text"]{
     .main {
         margin-left: 0;
     }
+}
+
+
+.news-box{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 2rem;
+    padding: 1rem;
+}
+.news{
+    border-radius: 10px;
+    overflow: hidden;
+    background: #F5F6F7;
+}
+.news-content{
+    padding: 1rem;
+}
+.news .img img{
+    width: 100%;
+    height: 15rem;
+    object-fit: cover;
+    object-position: center;
+}
+.news-footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.news-btn{
+    padding: 1rem;
+}
+
+.news-show img{
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    object-position: center;
+
+}
+.news-btn{
+    background: #fff;
+    margin-bottom: .5rem;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.overlay{
+    position: fixed;
+    background: #000000a1;
+    left: 0;
+    right: 0;
+    top: 0%;
+    bottom: 0%;
+    display: none;
+    justify-content: center;
+    cursor: pointer;
+}
+.overlay input{
+    padding: 1rem;
+    margin-top: 300px;
+    width: 50%;
+    height: 30px;
+    border-radius: 10px;
 }

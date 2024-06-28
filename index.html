@@ -18,7 +18,7 @@
 					<li><a href="#about">About us</a></li>
 					<li><a href="#apps">Apps</a></li>
 					<div>
-						<input type="text" placeholder="Search" />
+						<input type="text" placeholder="Search" onClick="openOverlay()" readonly/>
 					</div>
 				</ul>
 			</nav>
@@ -31,19 +31,23 @@
 					<li><a href="#news">News</a></li>
 					<li><a href="#about">About us</a></li>
 					<li><a href="#apps">Apps</a></li>
-					<li><input type="text" placeholder="Search" /></li>
+					<li>
+						<input type="text" placeholder="Search" onClick="openOverlay()" readonly/>
+					</li>
 				</ul>
 				<div class="menu-btn"><button>⏸️</button></div>
 			</nav>
 			<div class="main">
 				<div class="info">
 					<div class="main-info">
-						<h2>Welcome to icourses</h2><br>
+						<h2>Welcome to icourses</h2>
+						<br />
 						<p>The Ultimate Guide to Web Design and Development</p>
 					</div>
 					<hr />
 					<div class="main-info">
-						<h5>Latest iCourses</h5><br>
+						<h5>Latest iCourses</h5>
+						<br />
 						<p>
 							Choose from over hundreds of courses and learn with industry
 							leading experts. View all iCourses
@@ -51,9 +55,15 @@
 					</div>
 				</div>
 				<div id="courses" class="white-clr"></div>
-				<div class="btn-div"><button class="all-course-btn">All courses</button></div>
+				<div class="news-box"></div>
+				<div class="btn-div">
+					<button class="all-course-btn">All courses</button>
+				</div>
 				<div id="details" class="white-clr"></div>
 				<div class="accordion items white-clr"><h3>FAQs</h3></div>
+			</div>
+			<div class="overlay">
+				<input type="text" placeholder="Search" />
 			</div>
 		</div>
 
