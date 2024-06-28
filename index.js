@@ -156,7 +156,7 @@ const detailsDiv = document.querySelector("#details");
 function setDetails(courseDetails) {
 	currCourse = courseDetails[0].id;
 	detailsDiv.innerHTML = `<div id="details">
-					<div><button class="back-btn" onClick="goBack()"> <-</button></div>
+					<div><button class="back-btn btn" onClick="goBack()"> <-</button></div>
 					<div class="course-img">
 						<img
 							src="${courseDetails[0].image}"
@@ -201,7 +201,7 @@ function setDetails(courseDetails) {
 							</div>
 						</div>
 					</div>
-                    <div><button class="next-btn" onClick="goNext()"> next course</button></div>
+                    <div><button class="next-btn btn" onClick="goNext()"> next course</button></div>
 				</div>`;
 	detailsDiv.style.display = "block";
 	document.querySelectorAll(".main-info").forEach((div) => {
@@ -214,7 +214,7 @@ function setNextDetails(course) {
 	course = courses[course];
 	currCourse = course.id;
 	detailsDiv.innerHTML = `<div id="details">
-					<div><button class="back-btn" onClick="goBack()"> <-</button></div>
+					<div><button class="back-btn btn" onClick="goBack()"> <-</button></div>
 					<div class="course-img">
 						<img
 							src="${course.image}"
@@ -224,8 +224,8 @@ function setNextDetails(course) {
 					</div>
 					<div class="course-content">
 						<div class="course-details">
-							<h2>${course.title}</h2>
-							<p>${course.desc}</p>
+							<h2>${course.title}</h2><br/>
+							<p>${course.desc}</p><br/>
 							<p>${course.main}</p>
 						</div>
 						<div class="course-card">
@@ -254,13 +254,13 @@ function setNextDetails(course) {
 								<p>Price :</p>
 								<p>${course.price}$</p>
 							</div>
-							<div class="course-btn-div">
-								<button>Buy Now</button>
+							<div >
+								<button class="course-btn">Buy Now</button>
 							</div>
 						</div>
 					</div>
-                    </div>
                     <div><button class="next-btn" onClick="goNext()"> next course</button></div>
+                    </div>
                     `;
 	detailsDiv.style.display = "block";
 	document.querySelectorAll(".main-info").forEach((div) => {
@@ -284,17 +284,25 @@ function goBack() {
 const closeBtn = document.querySelector(".close-btn");
 const menuBtn = document.querySelector(".menu-btn");
 const sidebar = document.querySelector(".sidebar-res ul");
+const sidebarRes = document.querySelector(".sidebar-res");
+const head = document.querySelector(".sidebar-res h1");
 
 let resNav;
 menuBtn.addEventListener("click", () => {
 	sidebar.style.display = "block";
 	closeBtn.style.display = "block";
 	resNav = "active";
+	sidebarRes.style.height = "100vh";
+	menuBtn.style.display = "none";
+	head.style.display = "none";
 });
 
 closeBtn.addEventListener("click", () => {
 	sidebar.style.display = "none";
 	closeBtn.style.display = "none";
+	sidebarRes.style.height = "";
+	menuBtn.style.display = "";
+	head.style.display = "";
 });
 
 const faq = [
@@ -326,7 +334,7 @@ const faq = [
 ];
 
 const accordion = document.querySelector(".accordion");
-let accHtml = `<ul>`;
+let accHtml = `<ul class="accordion-ul">`;
 
 faq.map((faq) => {
 	accHtml += `
@@ -368,17 +376,17 @@ allCourseBtn.addEventListener("click", () => {
 	currentSection = "#allCourses";
 	accordion.style.display = "none";
 	allCourseBtn.style.display = "none";
-	info.innerHTML = `<h1>All iCourse</h1>`;
+	info.innerHTML = `<div class="main-info"><h1>All iCourse</h1><hr/></div>`;
 });
 const ul = document.querySelectorAll(".sidebar-ul");
 const mainInfo = `<div class="info">
 					<div class="main-info">
-					<h2>Welcome to icourses</h2>
+					<h2>Welcome to icourses</h2><br/>
 					<p>The Ultimate Guide to Web Design and Development</p>
 				</div>
 				<hr />
 				<div class="main-info">
-					<h5>Latest iCourses</h5>
+					<h5>Latest iCourses</h5><br/>
 					<p>
 						Choose from over hundreds of courses and learn with industry leading
 						experts. View all iCourses
@@ -388,6 +396,9 @@ const mainInfo = `<div class="info">
 ul.forEach((ul) => {
 	ul.addEventListener("click", (e) => {
 		const href = e.target.getAttribute("href");
+		sidebarRes.style.height = "";
+		menuBtn.style.display = "";
+		head.style.display = "";
 		if (resNav == "active") {
 			sidebar.style.display = "none";
 			closeBtn.style.display = "none";
@@ -399,7 +410,7 @@ ul.forEach((ul) => {
 			currentSection = "#allCourses";
 			accordion.style.display = "none";
 			allCourseBtn.style.display = "none";
-			info.innerHTML = `<h1>All iCourse</h1>`;
+			info.innerHTML = `<div class="main-info"><h1>All iCourse</h1><hr/></div>`;
 		}
 		if (href == "#dashboard") {
 			init(true);
