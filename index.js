@@ -167,8 +167,8 @@ function setDetails(courseDetails) {
 					</div>
 					<div class="course-content">
 						<div class="course-details">
-							<h2>${courseDetails[0].title}</h2>
-							<p>${courseDetails[0].desc}</p>
+							<h2>${courseDetails[0].title}</h2><br/>
+							<p>${courseDetails[0].desc}</p><br/>
 							<p>${courseDetails[0].main}</p>
 						</div>
 						<div class="course-card">
