@@ -85,11 +85,17 @@ const courses = [
 	},
 ];
 
+let currentSection = "#dashboard";
+
 const cardDiv = document.getElementById("courses");
 let html = ``;
-courses.map((course, index) => {
-	if (index == 4) return;
-	html += `<div class="card" data-id="${course.id}">
+function init(flag) {
+	html = ``;
+	courses.map((course, index) => {
+		if (flag) {
+			if (index >= 4) return;
+		}
+		html += `<div class="card" data-id="${course.id}">
 						<img
 							src="${course.image}"
 							alt=""
@@ -113,24 +119,30 @@ courses.map((course, index) => {
 							<button class="btn" data-id="${course.id}">-></button>
 						</div>
 					</div>`;
-});
-
-cardDiv.innerHTML = html;
+	});
+	cardDiv.innerHTML = html;
+	addListener();
+}
+init(true);
 const allCourseBtn = document.querySelector(".all-course-btn");
 let currCourse;
-const btn = document.querySelectorAll(".btn");
+
 let courseDetails;
-btn.forEach((b) => {
-	b.addEventListener("click", (e) => {
-		const id = e.target.dataset.id;
-		courseDetails = courses.filter((course) => {
-			return id == course.id;
+
+function addListener() {
+	const btn = document.querySelectorAll(".btn");
+	btn.forEach((b) => {
+		b.addEventListener("click", (e) => {
+			const id = e.target.dataset.id;
+			courseDetails = courses.filter((course) => {
+				return id == course.id;
+			});
+			currCourse = id;
+			setDetails(courseDetails);
+			allCourseBtn.style.display = "none";
 		});
-		currCourse = id;
-		setDetails(courseDetails);
-		allCourseBtn.style.display = "none";
 	});
-});
+}
 let index;
 function goNext() {
 	let index = courses.findIndex((course) => {
@@ -196,6 +208,7 @@ function setDetails(courseDetails) {
 		div.style.display = "none";
 	});
 	cardDiv.style.display = "none";
+	accordion.style.display = "none";
 }
 function setNextDetails(course) {
 	course = courses[course];
@@ -262,16 +275,21 @@ function goBack() {
 		div.style.display = "block";
 	});
 	cardDiv.style.display = "flex";
-	allCourseBtn.style.display = "block";
+	if (currentSection == "#dashboard") {
+		allCourseBtn.style.display = "block";
+		accordion.style.display = "flex";
+	}
 }
 
 const closeBtn = document.querySelector(".close-btn");
 const menuBtn = document.querySelector(".menu-btn");
 const sidebar = document.querySelector(".sidebar-res ul");
 
+let resNav;
 menuBtn.addEventListener("click", () => {
 	sidebar.style.display = "block";
 	closeBtn.style.display = "block";
+	resNav = "active";
 });
 
 closeBtn.addEventListener("click", () => {
@@ -282,27 +300,27 @@ closeBtn.addEventListener("click", () => {
 const faq = [
 	{
 		id: 1,
-		question: "whats are iCourses?",
+		question: "1whats are iCourses?",
 		answer: "educational courses offerred through various platforms",
 	},
 	{
 		id: 2,
-		question: "whats are iCourses?",
+		question: "2whats are iCourses?",
 		answer: "educational courses offerred through various platforms",
 	},
 	{
 		id: 3,
-		question: "whats are iCourses?",
+		question: "3whats are iCourses?",
 		answer: "educational courses offerred through various platforms",
 	},
 	{
 		id: 4,
-		question: "whats are iCourses?",
+		question: "4whats are iCourses?",
 		answer: "educational courses offerred through various platforms",
 	},
 	{
 		id: 5,
-		question: "whats are iCourses?",
+		question: "5whats are iCourses?",
 		answer: "educational courses offerred through various platforms",
 	},
 ];
@@ -313,9 +331,9 @@ let accHtml = `<ul>`;
 faq.map((faq) => {
 	accHtml += `
 			<li>
-				<div class="accordion">
-                    <div class="accordion-que">${faq.question}</div>
-                    <div class="accordion-btn">🔽</div>
+				<div class="accordion" data-id="${faq.id}">
+                    <div class="acc accordion-que" data-id="${faq.id}">${faq.question}</div>
+                    <div class="acc accordion-btn" data-id="${faq.id}">🔽</div>
                 </div>
 				<div class="accordion-ans" data-id="${faq.id}">${faq.answer}</div>
 			</li>
@@ -323,16 +341,72 @@ faq.map((faq) => {
 });
 
 accordion.innerHTML = accHtml + "</ul>";
-const accDiv = document.querySelectorAll(".accordion-ans");
-document
-	.querySelectorAll(".accordion-btn")
-	.forEach((btn) => btn.addEventListener("click", openAccordion));
 
+const allAccordion = document.querySelectorAll(".accordion");
+allAccordion.forEach((btn) => btn.addEventListener("click", openAccordion));
+
+const accordionAns = document.querySelectorAll(".accordion-ans");
+let toggle;
 function openAccordion(e) {
-	const div = e.target.parentElement.nextElementSibling;
-	if (div.style.display == "block") {
-		div.style.display = "none";
-	} else {
-		div.style.display = "block";
+	e.stopImmediatePropagation();
+	const div = e.target;
+	if (div.classList.contains("acc")) {
+		const id = div.dataset.id;
+		allAccordion.forEach((acc) => {
+			if (acc.nextElementSibling?.dataset.id == id) {
+				if (acc.nextElementSibling.style.display == "block")
+					acc.nextElementSibling.style.display = "none";
+				else acc.nextElementSibling.style.display = "block";
+			}
+		});
 	}
 }
+
+const info = document.querySelector(".info");
+allCourseBtn.addEventListener("click", () => {
+	init(false);
+	currentSection = "#allCourses";
+	accordion.style.display = "none";
+	allCourseBtn.style.display = "none";
+	info.innerHTML = `<h1>All iCourse</h1>`;
+});
+const ul = document.querySelectorAll(".sidebar-ul");
+const mainInfo = `<div class="info">
+					<div class="main-info">
+					<h2>Welcome to icourses</h2>
+					<p>The Ultimate Guide to Web Design and Development</p>
+				</div>
+				<hr />
+				<div class="main-info">
+					<h5>Latest iCourses</h5>
+					<p>
+						Choose from over hundreds of courses and learn with industry leading
+						experts. View all iCourses
+					</p>
+				</div>`;
+
+ul.forEach((ul) => {
+	ul.addEventListener("click", (e) => {
+		const href = e.target.getAttribute("href");
+		if (resNav == "active") {
+			sidebar.style.display = "none";
+			closeBtn.style.display = "none";
+			resNav = "inActive";
+		}
+		goBack();
+		if (href == "#all-courses") {
+			init(false);
+			currentSection = "#allCourses";
+			accordion.style.display = "none";
+			allCourseBtn.style.display = "none";
+			info.innerHTML = `<h1>All iCourse</h1>`;
+		}
+		if (href == "#dashboard") {
+			init(true);
+			currentSection = "#dashboard";
+			accordion.style.display = "flex";
+			allCourseBtn.style.display = "block";
+			info.innerHTML = mainInfo;
+		}
+	});
+});
