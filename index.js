@@ -88,9 +88,9 @@ const courses = [
 let currentSection = "#dashboard";
 
 const cardDiv = document.getElementById("courses");
-let html = `<div id="courses" class="white-clr">`;
+let html = ``;
 function init(flag) {
-	html = ``;
+	html = `<div id="courses" class="white-clr">`;
 	courses.map((course, index) => {
 		if (flag) {
 			if (index >= 4) return;
@@ -121,6 +121,7 @@ function init(flag) {
 					</div>`;
 	});
 	cardDiv.innerHTML = html + "</div>";
+
 	addListener();
 }
 init(true);
@@ -274,7 +275,7 @@ function goBack() {
 	document.querySelectorAll(".main-info").forEach((div) => {
 		div.style.display = "block";
 	});
-	cardDiv.style.display = "flex";
+	cardDiv.style.display = "grid";
 	if (currentSection == "#dashboard") {
 		allCourseBtn.style.display = "block";
 		accordion.style.display = "flex";
