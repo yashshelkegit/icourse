@@ -394,6 +394,9 @@ const mainInfo = `<div class="info">
 					</p>
 				</div>`;
 
+const li = document.querySelectorAll("nav ul li");
+// console.log(sideLi);
+
 ul.forEach((ul) => {
 	ul.addEventListener("click", (e) => {
 		const href = e.target.getAttribute("href");
@@ -402,6 +405,15 @@ ul.forEach((ul) => {
 		head.style.display = "";
 		newsDiv.style.display = "none";
 		contact.style.display = "none";
+
+		li.forEach((li) => {
+			if (li.children[0].getAttribute("href") == href) {
+				li.classList.add("active");
+			} else {
+				li.classList.remove("active");
+			}
+		});
+
 		if (resNav == "active") {
 			sidebar.style.display = "none";
 			closeBtn.style.display = "none";
