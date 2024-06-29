@@ -157,7 +157,7 @@ const detailsDiv = document.querySelector("#details");
 function setDetails(courseDetails) {
 	currCourse = courseDetails[0].id;
 	detailsDiv.innerHTML = `<div id="details">
-					<div><button class="back-btn" onClick="goBack()"><img src="./icons/arrow-right.svg"/></button></div>
+					<div><button class="back-btn" onClick="goBack()"><img class="rotate" src="./icons/arrow-right.svg"/></button></div>
 					<div class="course-img">
 						<img
 							src="${courseDetails[0].image}"
@@ -215,7 +215,7 @@ function setNextDetails(course) {
 	course = courses[course];
 	currCourse = course.id;
 	detailsDiv.innerHTML = `<div id="details">
-					<div><button class="back-btn" onClick="goBack()"><img src="./icons/arrow-right.svg"/></button></div>
+					<div><button class="back-btn" onClick="goBack()"><img class="rotate" src="./icons/arrow-right.svg"/></button></div>
 					<div class="course-img">
 						<img
 							src="${course.image}"
@@ -287,6 +287,7 @@ const menuBtn = document.querySelector(".menu-btn");
 const sidebar = document.querySelector(".sidebar-res ul");
 const sidebarRes = document.querySelector(".sidebar-res");
 const head = document.querySelector(".sidebar-res h1");
+const body = document.querySelector("body");
 
 let resNav;
 menuBtn.addEventListener("click", () => {
@@ -404,6 +405,7 @@ ul.forEach((ul) => {
 		head.style.display = "";
 		newsDiv.style.display = "none";
 		contact.style.display = "none";
+		body.style.background = "";
 
 		if (resNav == "active") {
 			sidebar.style.display = "none";
@@ -453,6 +455,7 @@ ul.forEach((ul) => {
 			newsDiv.style.display = "none";
 			contact.style.display = "block";
 			cardDiv.style.display = "none";
+			body.style.background = "#f5f6f7";
 		}
 		li.forEach((li) => {
 			if (li?.children[1]?.getAttribute("href") == href) {
@@ -469,7 +472,8 @@ function getNews(id) {
 	const newsToShow = news.filter((news) => news.id == id);
 	console.log(newsToShow);
 	let html = `<div class="news-show">
-			<button class="news-back-btn" onclick="goToNews()"><- back to news</button>
+			<div><button class="back-btn" onClick="goToNews()"><img class="rotate" src="./icons/arrow-right.svg"/></button></div>
+			
 			<div class="img">
 				<img src="${newsToShow[0].image}" alt="">
 			</div><br/>
@@ -595,6 +599,9 @@ overlaySearch.addEventListener("keyup", (e) => {
 				}
 			}
 		});
+		li.forEach((li) => {
+			li.classList.remove("active");
+		});
 		if (flag) {
 			currentSection = "#news";
 			accordion.style.display = "none";
@@ -620,5 +627,7 @@ overlaySearch.addEventListener("keyup", (e) => {
 			info.innerHTML = mainInfo;
 			newsDiv.style.display = "none";
 		}
+		
+	
 	}
 });
