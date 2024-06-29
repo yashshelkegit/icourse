@@ -401,6 +401,7 @@ ul.forEach((ul) => {
 		menuBtn.style.display = "";
 		head.style.display = "";
 		newsDiv.style.display = "none";
+		contact.style.display = "none";
 		if (resNav == "active") {
 			sidebar.style.display = "none";
 			closeBtn.style.display = "none";
@@ -441,8 +442,18 @@ ul.forEach((ul) => {
 				});
 			});
 		}
+		if (href == "#contact") {
+			currentSection = "#news";
+			accordion.style.display = "none";
+			allCourseBtn.style.display = "none";
+			info.innerHTML = `<div class="main-info"></div>`;
+			newsDiv.style.display = "none";
+			contact.style.display = "block";
+			cardDiv.style.display = "none";
+		}
 	});
 });
+const contact = document.querySelector(".contact");
 
 function getNews(id) {
 	const newsToShow = news.filter((news) => news.id == id);
