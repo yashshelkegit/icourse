@@ -12,12 +12,33 @@
 				<div class="logo"><h1>iCourses</h1></div>
 				<br />
 				<ul class="sidebar-ul">
-					<li class="active" ><a href="#dashboard">Dashboard</a></li>
-					<li class=""><a href="#all-courses">All Courses</a></li>
-					<li class=""><a href="#news">News</a></li>
-					<li class=""><a href="#contact">Contact Us</a></li>
-					<li class=""><a href="#apps">Apps</a></li>
-					<div>
+					<li class="active" href="#dashboard">
+						<img src="./icons/home.svg" alt="" width="15px" class="icon" />
+						<a href="#dashboard">Dashboard</a>
+					</li>
+					<li class="" href="#all">
+						<img src="./icons/apps.svg" alt="" width="15px" class="icon" /><a
+							href="#all-courses"
+							>All Courses</a
+						>
+					</li>
+					<li class="" href="#news">
+						<img
+							src="./icons/newspaper.svg"
+							alt=""
+							width="15px"
+							class="icon"
+						/><a href="#news">News</a>
+					</li>
+					<li class="" href="#contact">
+						<img
+							src="./icons/phone-call.svg"
+							alt=""
+							width="15px"
+							class="icon"
+						/><a href="#contact">Contact Us</a>
+					</li>
+					<div class="search">
 						<input
 							type="text"
 							placeholder="Search"
@@ -30,22 +51,52 @@
 			<nav class="sidebar-res">
 				<div class="logo"><h1>iCourses</h1></div>
 				<ul class="sidebar-ul res">
-					<div class="close-btn"><button>❌</button></div>
-					<li class="active" ><a href="#dashboard">Dashboard</a></li>
-					<li class=""><a href="#all-courses">All Courses</a></li>
-					<li class=""><a href="#news">News</a></li>
-					<li class=""><a href="#contact">Contact Us</a></li>
-					<li class=""><a href="#apps">Apps</a></li>
-					<li>
+					<div class="close-btn">
+						<button>
+							<img src="./icons/cross.svg" alt="" width="15px" class="icon" />
+						</button>
+					</div>
+					<li class="active" href="#dashboard">
+						<img src="./icons/apps.svg" alt="" width="15px" class="icon" />
+						<a href="#dashboard">Dashboard</a>
+					</li>
+					<li class="" href="#all">
+						<img src="./icons/apps.svg" alt="" width="15px" class="icon" /><a
+							href="#all-courses"
+							>All Courses</a
+						>
+					</li>
+					<li class="" href="#news">
+						<img src="./icons/apps.svg" alt="" width="15px" class="icon" /><a
+							href="#news"
+							>News</a
+						>
+					</li>
+					<li class="" href="#contact">
+						<img src="./icons/apps.svg" alt="" width="15px" class="icon" /><a
+							href="#contact"
+							>Contact Us</a
+						>
+					</li>
+					<div class="search">
 						<input
 							type="text"
 							placeholder="Search"
 							onClick="openOverlay()"
 							readonly
 						/>
-					</li>
+					</div>
 				</ul>
-				<div class="menu-btn"><button>⏸️</button></div>
+				<div class="menu-btn">
+					<button>
+						<img
+							src="./icons/menu-burger.svg"
+							alt=""
+							width="15px"
+							class="icon"
+						/>
+					</button>
+				</div>
 			</nav>
 			<div class="main">
 				<div class="info">
@@ -73,28 +124,28 @@
 				<div class="accordion items white-clr"><h3>FAQs</h3></div>
 				<div class="contact">
 					<h1>Contact Us</h1>
-					<p>
+					<p class="gray-clr">
 						Lorem ipsum dolor, sit amet consectetur adipisicing elit.
 						Reprehenderit, sed?
 					</p>
 					<br />
 					<div class="contact-box">
 						<div class="contact-details">
-							<h3>Contacts</h3>
-							<h5>Address</h5>
-							<p>129 - 131 Mar St London E8</p>
+							<h2>Contacts</h2>
+							<h3>Address</h3>
+							<p class="gray-clr">129 - 131 Mar St London E8</p>
 							<br />
-							<h5>Informations</h5>
-							<p>Email : info@gmail.com</p>
-							<p>Tel : (+91)9483838498</p>
+							<h3>Informations</h3>
+							<p class="gray-clr">Email : info@gmail.com</p>
+							<p class="gray-clr">Tel : (+91)9483838498</p>
 							<br />
-							<h5>Social Media</h5>
-							<p>facebook</p>
-							<p>instagram</p>
+							<h3>Social Media</h3>
+							<p class="gray-clr">facebook</p>
+							<p class="gray-clr">instagram</p>
 						</div>
 						<div class="contact-form">
 							<form action="#">
-								<h3>Form</h3>
+								<h2>Form</h2>
 								<div class="row">
 									<input type="text" placeholder="Name" />
 									<input type="text" placeholder="Email" />

@@ -102,21 +102,21 @@ function init(flag) {
 							width="300px"
 						/>
 						<div class="cart-title">
-							<h4>${course.title}</h4>
+							<h1>${course.title}</h1>
 						</div>
 						<div class="content">
-							<p>${course.content}</p>
+							<p class="gray-clr">${course.content}</p>
 						</div>
 						<hr />
 						<div class="card-f1">
-							<p>By <span>${course.by}</span></p>
-							<p>${course.price}$</p>
+							<p class="gray-clr">By <span>${course.by}</span></p>
+							<p class="gray-clr">${course.price}$</p>
 						</div>
 						<hr />
 						<div class="card-f2">
-							<p>Lessons : <span>${course.lessons}</span></p>
-							<p>Level : <span>${course.level}</span></p>
-							<button class="btn" data-id="${course.id}">-></button>
+							<p class="gray-clr">Lessons : <span>${course.lessons}</span></p>
+							<p class="gray-clr">Level : <span>${course.level}</span></p>
+							<button class="btn" data-id="${course.id}"><img src="./icons/arrow-right.svg" data-id="${course.id}"/></button>
 						</div>
 					</div>`;
 	});
@@ -157,7 +157,7 @@ const detailsDiv = document.querySelector("#details");
 function setDetails(courseDetails) {
 	currCourse = courseDetails[0].id;
 	detailsDiv.innerHTML = `<div id="details">
-					<div><button class="back-btn btn" onClick="goBack()"> <-</button></div>
+					<div><button class="back-btn" onClick="goBack()"><img src="./icons/arrow-right.svg"/></button></div>
 					<div class="course-img">
 						<img
 							src="${courseDetails[0].image}"
@@ -167,35 +167,35 @@ function setDetails(courseDetails) {
 					</div>
 					<div class="course-content">
 						<div class="course-details">
-							<h2>${courseDetails[0].title}</h2><br/>
-							<p>${courseDetails[0].desc}</p><br/>
-							<p>${courseDetails[0].main}</p>
+							<h1>${courseDetails[0].title}</h1><br/>
+							<p class="gray-clr">${courseDetails[0].desc}</p><br/>
+							<p class="gray-clr">${courseDetails[0].main}</p>
 						</div>
 						<div class="course-card">
-							<h4>Course Details</h4>
+							<h2>Course Details</h2>
 							<div>
-								<p>Author :</p>
-								<p>${courseDetails[0].by}</p>
+								<p class="gray-clr">Author :</p>
+								<p class="gray-clr">${courseDetails[0].by}</p>
 							</div>
 							<hr />
 							<div>
-								<p>Level :</p>
-								<p>${courseDetails[0].level}</p>
+								<p class="gray-clr">Level :</p>
+								<p class="gray-clr">${courseDetails[0].level}</p>
 							</div>
 							<hr />
 							<div>
-								<p>lessons :</p>
-								<p>${courseDetails[0].lessons}</p>
+								<p class="gray-clr">lessons :</p>
+								<p class="gray-clr">${courseDetails[0].lessons}</p>
 							</div>
 							<hr />
 							<div>
-								<p>Language :</p>
-								<p>${courseDetails[0].lang}</p>
+								<p class="gray-clr">Language :</p>
+								<p class="gray-clr">${courseDetails[0].lang}</p>
 							</div>
                             <hr />
 							<div>
-								<p>Price :</p>
-								<p>${courseDetails[0].price}$</p>
+								<p class="gray-clr">Price :</p>
+								<p class="gray-clr">${courseDetails[0].price}$</p>
 							</div>
 							<div class="course-btn-div">
 								<button>Buy Now</button>
@@ -215,7 +215,7 @@ function setNextDetails(course) {
 	course = courses[course];
 	currCourse = course.id;
 	detailsDiv.innerHTML = `<div id="details">
-					<div><button class="back-btn btn" onClick="goBack()"> <-</button></div>
+					<div><button class="back-btn" onClick="goBack()"><img src="./icons/arrow-right.svg"/></button></div>
 					<div class="course-img">
 						<img
 							src="${course.image}"
@@ -225,35 +225,35 @@ function setNextDetails(course) {
 					</div>
 					<div class="course-content">
 						<div class="course-details">
-							<h2>${course.title}</h2><br/>
-							<p>${course.desc}</p><br/>
-							<p>${course.main}</p>
+							<h1>${course.title}</h1><br/>
+							<p class="gray-clr">${course.desc}</p><br/>
+							<p class="gray-clr">${course.main}</p>
 						</div>
 						<div class="course-card">
-							<h4>Course Details</h4>
+							<h2>Course Details</h2>
 							<div>
-								<p>Author :</p>
-								<p>${course.by}</p>
+								<p class="gray-clr">Author :</p>
+								<p class="gray-clr">${course.by}</p>
 							</div>
 							<hr />
 							<div>
-								<p>Level :</p>
-								<p>${course.level}</p>
+								<p class="gray-clr">Level :</p>
+								<p class="gray-clr">${course.level}</p>
 							</div>
 							<hr />
 							<div>
-								<p>lessons :</p>
-								<p>${course.lessons}</p>
+								<p class="gray-clr">lessons :</p>
+								<p class="gray-clr">${course.lessons}</p>
 							</div>
 							<hr />
 							<div>
-								<p>Language :</p>
-								<p>${course.lang}</p>
+								<p class="gray-clr">Language :</p>
+								<p class="gray-clr">${course.lang}</p>
 							</div>
                             <hr />
 							<div>
-								<p>Price :</p>
-								<p>${course.price}$</p>
+								<p class="gray-clr">Price :</p>
+								<p class="gray-clr">${course.price}$</p>
 							</div>
 							<div >
 								<button class="course-btn">Buy Now</button>
@@ -341,10 +341,10 @@ faq.map((faq) => {
 	accHtml += `
 			<li>
 				<div class="accordion" data-id="${faq.id}">
-                    <div class="acc accordion-que" data-id="${faq.id}">${faq.question}</div>
-                    <div class="acc accordion-btn" data-id="${faq.id}">🔽</div>
+                    <h3 class="acc accordion-que" data-id="${faq.id}">${faq.question}</h3>
+                    <img class="acc accordion-btn icon" src="./icons/cross.svg" data-id="${faq.id}"/>
                 </div>
-				<div class="accordion-ans" data-id="${faq.id}">${faq.answer}</div>
+				<div class="accordion-ans gray-clr" data-id="${faq.id}">${faq.answer}</div>
 			</li>
 		`;
 });
@@ -395,7 +395,6 @@ const mainInfo = `<div class="info">
 				</div>`;
 
 const li = document.querySelectorAll("nav ul li");
-// console.log(sideLi);
 
 ul.forEach((ul) => {
 	ul.addEventListener("click", (e) => {
@@ -405,14 +404,6 @@ ul.forEach((ul) => {
 		head.style.display = "";
 		newsDiv.style.display = "none";
 		contact.style.display = "none";
-
-		li.forEach((li) => {
-			if (li.children[0].getAttribute("href") == href) {
-				li.classList.add("active");
-			} else {
-				li.classList.remove("active");
-			}
-		});
 
 		if (resNav == "active") {
 			sidebar.style.display = "none";
@@ -463,6 +454,13 @@ ul.forEach((ul) => {
 			contact.style.display = "block";
 			cardDiv.style.display = "none";
 		}
+		li.forEach((li) => {
+			if (li?.children[1]?.getAttribute("href") == href) {
+				if (li.innerHTML != "") li.classList.add("active");
+			} else {
+				li.classList.remove("active");
+			}
+		});
 	});
 });
 const contact = document.querySelector(".contact");
@@ -471,7 +469,7 @@ function getNews(id) {
 	const newsToShow = news.filter((news) => news.id == id);
 	console.log(newsToShow);
 	let html = `<div class="news-show">
-			<button class="news-btn" onclick="goToNews()"><- back to news</button>
+			<button class="news-back-btn" onclick="goToNews()"><- back to news</button>
 			<div class="img">
 				<img src="${newsToShow[0].image}" alt="">
 			</div><br/>
@@ -562,11 +560,11 @@ news.map((news, index) => {
 							<h1>${news.title}</h1>
 						</div><br>
 						<div class="news desc" data-id="${news.id}">
-							<h4>${news.desc}</h4>
+							<h4 class="gray-clr">${news.desc}</h4>
 						</div><br>
 						<div class="news news-footer" data-id="${news.id}">
-							<p>Author : ${news.author}</p>
-							<button class="news news-btn" data-id="${news.id}">-></button>
+							<p class="gray-clr">Author : ${news.author}</p>
+							<button class="news news-btn" data-id="${news.id}"><img class="icon" src="./icons/arrow-right.svg" data-id="${news.id}"/></button>
 						</div>
 					</div>
 				</div>`;
