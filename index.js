@@ -210,9 +210,11 @@ function setDetails(courseDetails) {
 	});
 	cardDiv.style.display = "none";
 	accordion.style.display = "none";
+	newsAppDiv.style.display = "none";
 }
 function setNextDetails(course) {
 	course = courses[course];
+
 	currCourse = course.id;
 	detailsDiv.innerHTML = `<div id="details">
 					<div><button class="back-btn" onClick="goBack()"><img class="rotate" src="./icons/arrow-right.svg"/></button></div>
@@ -268,6 +270,7 @@ function setNextDetails(course) {
 		div.style.display = "none";
 	});
 	cardDiv.style.display = "none";
+	newsAppDiv.style.display = "none";
 }
 
 function goBack() {
@@ -279,6 +282,7 @@ function goBack() {
 	if (currentSection == "#dashboard") {
 		allCourseBtn.style.display = "block";
 		accordion.style.display = "flex";
+		newsAppDiv.style.display = "grid";
 	}
 }
 
@@ -378,8 +382,45 @@ allCourseBtn.addEventListener("click", () => {
 	currentSection = "#allCourses";
 	accordion.style.display = "none";
 	allCourseBtn.style.display = "none";
+	newsAppDiv.style.display = "none";
+	activeTab(2);
 	info.innerHTML = `<div class="main-info"><h1>All iCourse</h1><hr/></div>`;
 });
+function viewCourses() {
+	init(false);
+	currentSection = "#allCourses";
+	accordion.style.display = "none";
+	allCourseBtn.style.display = "none";
+	info.innerHTML = `<div class="main-info"><h1>All iCourse</h1><hr/></div>`;
+	newsAppDiv.style.display = "none";
+	activeTab(2);
+}
+function activeTab(id) {
+	li.forEach((li) => {
+		if (li.dataset.id == id) li.classList.add("active");
+		else li.classList.remove("active");
+	});
+}
+function viewNews() {
+	currentSection = "#news";
+	accordion.style.display = "none";
+	allCourseBtn.style.display = "none";
+	info.innerHTML = `<div class="main-info"><h1>News</h1><hr/></div>`;
+	newsDiv.innerHTML = newsHtml + "</div>";
+	newsDiv.style.display = "grid";
+	cardDiv.style.display = "none";
+	newsAppDiv.style.display = "none";
+	const newsCard = document.querySelectorAll(".news");
+	newsCard.forEach((card) => {
+		card.addEventListener("click", (e) => {
+			e.stopImmediatePropagation();
+			if (e.currentTarget.classList.contains("news")) {
+				getNews(e.currentTarget.dataset.id);
+			}
+		});
+	});
+	activeTab(3);
+}
 const ul = document.querySelectorAll(".sidebar-ul");
 const mainInfo = `<div class="info">
 					<div class="main-info">
@@ -396,6 +437,7 @@ const mainInfo = `<div class="info">
 				</div>`;
 
 const li = document.querySelectorAll("nav ul li");
+const newsAppDiv = document.querySelector(".news-apps");
 
 ul.forEach((ul) => {
 	ul.addEventListener("click", (e) => {
@@ -406,6 +448,8 @@ ul.forEach((ul) => {
 		newsDiv.style.display = "none";
 		contact.style.display = "none";
 		body.style.background = "";
+		newsAppDiv.style.display = "none";
+		appPageDiv.style.display = "none";
 
 		if (resNav == "active") {
 			sidebar.style.display = "none";
@@ -419,6 +463,8 @@ ul.forEach((ul) => {
 			accordion.style.display = "none";
 			allCourseBtn.style.display = "none";
 			newsDiv.style.display = "none";
+			activeTab(2);
+			newsAppDiv.style.display = "none";
 			info.innerHTML = `<div class="main-info"><h1>All iCourse</h1><hr/></div>`;
 		}
 		if (href == "#dashboard") {
@@ -428,6 +474,8 @@ ul.forEach((ul) => {
 			allCourseBtn.style.display = "block";
 			info.innerHTML = mainInfo;
 			newsDiv.style.display = "none";
+			newsAppDiv.style.display = "block";
+			activeTab(1);
 		}
 		if (href == "#news") {
 			currentSection = "#news";
@@ -437,6 +485,7 @@ ul.forEach((ul) => {
 			newsDiv.innerHTML = newsHtml + "</div>";
 			newsDiv.style.display = "grid";
 			cardDiv.style.display = "none";
+			activeTab(3);
 			const newsCard = document.querySelectorAll(".news");
 			newsCard.forEach((card) => {
 				card.addEventListener("click", (e) => {
@@ -448,7 +497,7 @@ ul.forEach((ul) => {
 			});
 		}
 		if (href == "#contact") {
-			currentSection = "#news";
+			currentSection = "#contact";
 			accordion.style.display = "none";
 			allCourseBtn.style.display = "none";
 			info.innerHTML = `<div class="main-info"></div>`;
@@ -456,18 +505,36 @@ ul.forEach((ul) => {
 			contact.style.display = "block";
 			cardDiv.style.display = "none";
 			body.style.background = "#f5f6f7";
+			newsAppDiv.style.display = "none";
+			activeTab(4);
 		}
-		li.forEach((li) => {
-			if (li?.children[1]?.getAttribute("href") == href) {
-				if (li.innerHTML != "") li.classList.add("active");
-			} else {
-				li.classList.remove("active");
-			}
-		});
+		if (href == "#apps") {
+			goApps();
+		}
+		// li.forEach((li) => {
+		// 	if (li?.children[1]?.getAttribute("href") == href) {
+		// 		if (li.innerHTML != "") li.classList.add("active");
+		// 	} else {
+		// 		li.classList.remove("active");
+		// 	}
+		// });
 	});
 });
+function goApps() {
+	currentSection = "#news";
+	accordion.style.display = "none";
+	allCourseBtn.style.display = "none";
+	info.innerHTML = `<div class="main-info"></div>`;
+	newsDiv.style.display = "none";
+	contact.style.display = "none";
+	cardDiv.style.display = "none";
+	body.style.background = "#f5f6f7";
+	appPageDiv.style.display = "block";
+	newsAppDiv.style.display = "none";
+	activeTab(5);
+}
 const contact = document.querySelector(".contact");
-
+const appPageDiv = document.querySelector(".apps-page-div");
 function getNews(id) {
 	const newsToShow = news.filter((news) => news.id == id);
 	console.log(newsToShow);
@@ -610,6 +677,7 @@ overlaySearch.addEventListener("keyup", (e) => {
 			newsDiv.innerHTML = newsHtml + "</div>";
 			newsDiv.style.display = "grid";
 			cardDiv.style.display = "none";
+			activeTab(3);
 			const newsCard = document.querySelectorAll(".news");
 			newsCard.forEach((card) => {
 				card.addEventListener("click", (e) => {
@@ -626,8 +694,83 @@ overlaySearch.addEventListener("keyup", (e) => {
 			allCourseBtn.style.display = "block";
 			info.innerHTML = mainInfo;
 			newsDiv.style.display = "none";
+			activeTab(1);
 		}
-		
-	
 	}
 });
+
+const apps = [
+	{
+		id: 1,
+		image: "./icons/apps.svg",
+		name: "Notion",
+		category: "Workspace",
+		content:
+			"Notion is the connected workspace where better, faster work happens.",
+	},
+	{
+		id: 2,
+		image: "./icons/menu-burger.svg",
+		name: "Notion",
+		category: "Workspace",
+		content:
+			"Notion is the connected workspace where better, faster work happens.",
+	},
+	{
+		id: 3,
+		image: "./icons/lesson.svg",
+		name: "Notion",
+		category: "Workspace",
+		content:
+			"Notion is the connected workspace where better, faster work happens.",
+	},
+	{
+		id: 4,
+		image: "./icons/home.svg",
+		name: "Notion",
+		category: "Workspace",
+		content:
+			"Notion is the connected workspace where better, faster work happens.",
+	},
+	{
+		id: 5,
+		image: "./icons/search.svg",
+		name: "Notion",
+		category: "Workspace",
+		content:
+			"Notion is the connected workspace where better, faster work happens.",
+	},
+];
+const appsDiv = document.querySelector("#apps");
+let appsHtml = ``;
+apps.map((app) => {
+	appsHtml += `<div class="app" data-id="${app.id}" onClick="goApps()">
+							<div><img class="app-icon" src="${app.image}" alt="" /></div>
+							<div>
+								<h4>${app.name}</h4>
+								<p>${app.category}</p>
+							</div>
+						</div>`;
+});
+appsDiv.innerHTML = appsHtml;
+
+const appsPage = document.querySelector(".apps-page");
+let appsPageHtml = "";
+apps.map((app) => {
+	appsPageHtml += `<div class="app-page-box">
+						<div class="app-content">
+							<div class="app-head">
+								<div>
+									<img class="app-icon" src="${app.image}" alt="" />
+								</div>
+								<div><h3>${app.name}</h3></div>
+							</div>
+							<div class="app-desc">
+								<h3>${app.category}</h3>
+								<p>${app.content}</p>
+							</div>
+						</div>
+						<div><button onCliks="goTo()">Website</button></div>
+					</div>`;
+});
+appsPage.innerHTML += appsPageHtml;

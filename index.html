@@ -16,20 +16,24 @@
 				<div class="logo"><h1>iCourses</h1></div>
 				<br />
 				<ul class="sidebar-ul">
-					<li class="active" href="#dashboard">
-						<i class="fa fa-car"></i>
+					<li class="active" href="#dashboard" data-id="1">
+						<i class="fa fa-window-maximize"></i>
 						<a href="#dashboard">Dashboard</a>
 					</li>
-					<li class="" href="#all">
-						<i class="fa fa-cloud"></i><a href="#all-courses">All Courses</a>
+					<li class="" href="#all" data-id="2">
+						<i class="fa fa-laptop"></i><a href="#all-courses">All Courses</a>
 					</li>
-					<li class="" href="#news">
-						<i class="fa fa-file"></i>
+					<li class="" href="#news" data-id="3">
+						<i class="fa fa-newspaper-o"></i>
 						<a href="#news">News</a>
 					</li>
-					<li class="" href="#contact">
+					<li class="" href="#contact" data-id="4">
 						<i class="fa fa-phone"></i>
 						<a href="#contact">Contact Us</a>
+					</li>
+					<li class="" href="#apps" data-id="5">
+						<i class="fa fa-qrcode"></i>
+						<a href="#apps">Apps</a>
 					</li>
 					<div class="search">
 						<input
@@ -49,21 +53,25 @@
 							<img src="./icons/cross.svg" alt="" width="15px" class="icon" />
 						</button>
 					</div>
-					<li class="active" href="#dashboard">
-						<i class="fa fa-heart"></i>
+					<li class="active" href="#dashboard" data-id="1">
+						<i class="fa fa-window-maximize"></i>
 						<a href="#dashboard">Dashboard</a>
 					</li>
-					<li class="" href="#all">
-						<i class="fa fa-cloud"></i>
+					<li class="" href="#all" data-id="2">
+						<i class="fa fa-laptop"></i>
 						<a href="#all-courses">All Courses</a>
 					</li>
-					<li class="" href="#news">
-						<i class="fa fa-file"></i>
+					<li class="" href="#news" data-id="3">
+						<i class="fa fa-newspaper-o"></i>
 						<a href="#news">News</a>
 					</li>
-					<li class="" href="#contact">
+					<li class="" href="#contact" data-id="4">
 						<i class="fa fa-phone"></i>
 						<a href="#contact">Contact Us</a>
+					</li>
+					<li class="" href="#apps" data-id="5">
+						<i class="fa fa-qrcode"></i>
+						<a href="#apps">Apps</a>
 					</li>
 					<div class="search-res">
 						<input
@@ -102,11 +110,53 @@
 						</p>
 					</div>
 				</div>
-				<div id="courses" class="white-clr"></div>
-				<div class="news-box"></div>
+				<div id="courses" class="white-clr">
+					<!--  -->
+				</div>
+				<div class="news-box">
+					<!--  -->
+				</div>
+				<div class="apps-page-div">
+					<h2>Apps</h2>
+					<div class="apps-page"></div>
+					<!--  -->
+				</div>
 				<div class="btn-div">
 					<button class="all-course-btn">All courses</button>
 				</div>
+				<div class="news-apps">
+					<hr />
+					<div id="boxes" class="">
+						<div class="box">
+							<div><img class="app-icon" src="./icons/apps.svg" alt="" /></div>
+							<h3>courses</h3>
+							<p class="gray-clr">
+								Start learning with free courses. Explore free online courses
+								from the world's top universities and companies.
+							</p>
+							<button onclick="viewCourses()">view courses</button>
+						</div>
+						<div class="box">
+							<div>
+								<img class="app-icon" src="./icons/newspaper.svg" alt="" />
+							</div>
+							<h3>news</h3>
+							<p class="gray-clr">
+								Start learning with free courses. Explore free online courses
+								from the world's top universities and companies.
+							</p>
+							<button onclick="viewNews()">view news</button>
+						</div>
+					</div>
+					<hr />
+					<div class="apps-head">
+						<h1>Apps</h1>
+						<br />
+						<p class="gray-clr">Apps and Resources. All you need to success</p>
+					</div>
+					<div id="apps" class=""></div>
+				</div>
+
 				<div id="details" class="white-clr"></div>
 				<div class="accordion items white-clr"><h3>FAQs</h3></div>
 				<div class="contact">
