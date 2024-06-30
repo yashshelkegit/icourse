@@ -524,7 +524,7 @@ function goApps() {
 	currentSection = "#news";
 	accordion.style.display = "none";
 	allCourseBtn.style.display = "none";
-	info.innerHTML = `<div class="main-info"></div>`;
+	info.innerHTML = ``;
 	newsDiv.style.display = "none";
 	contact.style.display = "none";
 	cardDiv.style.display = "none";

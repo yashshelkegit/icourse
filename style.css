@@ -581,7 +581,7 @@ a{
 	display: none;
 }
 .apps-page-div h2{
-	margin: 1rem;
+	margin: 0 1rem;
 	padding: 1rem 0;
 	border-bottom: 1px solid gray;
 }
